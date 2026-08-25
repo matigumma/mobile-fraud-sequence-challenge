@@ -1,53 +1,84 @@
-# Challenge 001 — Secuencias de acceso remoto con riesgo de fraude
+# Challenge 001 — Resiliencia ante secuencias de toma de control remoto
 
 ## Objetivo
 
-Proponer una regla, conjunto de reglas o mecanismo de alerta que identifique una secuencia compatible con una toma de control remota de un teléfono **antes** de que se alcance una aplicación financiera, de identidad o de mensajería.
-
-La propuesta debe funcionar, o explicar con honestidad por qué no podría funcionar, en un Android convencional con consentimiento explícito del usuario.
+Estudiar reglas, señales o mecanismos de alerta que ayuden a reconocer una secuencia compatible con toma de control remoto **sin confundir correlación con certeza** y sin depender de que la persona pueda resistir una instrucción engañosa.
 
 ## Pregunta de trabajo
 
-> ¿Qué señales mínimas, permitidas y observables permiten distinguir una escalada de riesgo de un uso legítimo de soporte remoto?
+> Bajo el supuesto de que un atacante puede inducir a la persona a instalar apps, otorgar permisos, declarar una sesión como legítima, ignorar alertas y cambiar preferencias desde el dispositivo, ¿qué señales o anclas independientes permiten una intervención útil?
 
-## Contexto
+## Modelo de partida
 
-En campañas de ingeniería social documentadas en Argentina, la víctima puede ser inducida a instalar una herramienta legítima de acceso remoto y luego abrir servicios financieros. La investigación también contempla una escalada hacia correo, cuenta Google o WhatsApp, siempre como hipótesis que debe respaldarse con evidencia.
+La investigación parte de campañas de ingeniería social en las que una persona puede instalar una herramienta legítima de asistencia remota y luego abrir una aplicación financiera, de identidad o de mensajería. Eso no permite afirmar que cada secuencia equivalente sea fraudulenta.
 
-Este desafío no intenta afirmar que toda secuencia de este tipo sea una estafa. Busca diseñar la mejor alerta temprana posible sin caer en vigilancia invasiva.
+La distinción entre estos tres niveles es obligatoria:
 
-## Restricciones
+| Nivel | Ejemplo | Tratamiento correcto |
+| --- | --- | --- |
+| **Observación** | Una app conocida se instala o pasa a primer plano. | Puede alimentar una regla, si está técnicamente disponible. |
+| **Inferencia** | Podría existir una sesión de asistencia remota. | Debe presentarse como hipótesis, no como hecho. |
+| **Daño / ground truth** | Hubo una toma de cuenta o una operación financiera simulada. | Sólo se usa para evaluar un escenario de laboratorio. |
 
-- No leer ni almacenar contenido de chats, correos, llamadas, notificaciones, contraseñas o códigos de un solo uso.
-- No usar permisos o técnicas incompatibles con una aplicación Android convencional distribuible.
-- No requerir control del dispositivo mediante MDM, administración corporativa ni integración bancaria para la primera versión.
-- No tratar una app o evento individual como prueba suficiente de fraude.
-- No incluir información que facilite perpetrar, escalar o evadir fraudes.
+## Pistas de contribución
 
-## Entregable de una propuesta
+### Research
+
+Responde: **¿una señal o combinación mejora la capacidad de distinguir, o demuestra que no puede distinguirse?**
+
+- Usa solamente cronologías sintéticas, dispositivos de prueba y cuentas ficticias.
+- Puede estudiar una señal aunque todavía no sea apta para producto.
+- Debe declarar por qué el resultado no constituye una promesa de despliegue.
+- Puede concluir correctamente: “con estas observaciones no es identificable”.
+
+### Deployment
+
+Responde: **¿la idea debería transformarse en una función para personas reales?**
+
+- Sólo puede usar señales mínimas, consentidas y compatibles con una aplicación Android convencional.
+- Debe separar lo que es técnicamente posible de lo que sería aceptable, proporcional y compatible con plataforma.
+- Debe indicar qué ocurre si el usuario es persuadido para descartar la alerta, retirar permisos o declarar una excepción.
+- Debe definir una intervención y su modo de falla; no puede afirmar que una notificación en el mismo teléfono resuelve el riesgo.
+
+## Límites comunes
+
+- No usar datos de víctimas, cuentas, teléfonos, credenciales, códigos, mensajes, audio de llamadas ni capturas reales.
+- No producir ni publicar instrucciones que habiliten, escalen o evadan fraude.
+- No tratar una app, un permiso o una excepción voluntaria como evidencia suficiente de legitimidad.
+- No afirmar control remoto activo, transferencia, toma de Google o toma de WhatsApp si sólo se observó una cronología de apps.
+- No usar una contribución educativa como justificación para crear vigilancia sobre personas reales.
+
+## Entregable
 
 Cada propuesta debe incluir:
 
-1. Una cadena de riesgo y la evidencia que la fundamenta.
-2. Las señales observables y las que quedan fuera del alcance.
-3. La regla propuesta, sus ventanas de tiempo y el nivel de riesgo esperado.
-4. Su comportamiento frente a todos los escenarios sintéticos.
-5. Falsos positivos previsibles y cómo reducirlos.
-6. Una acción de protección clara para la persona, su contacto de confianza o una institución.
-7. Permisos, datos mínimos y riesgos de privacidad.
+1. Pista elegida: Research o Deployment.
+2. Cadena de riesgo, evidencia y nivel de confianza de cada afirmación.
+3. Separación entre eventos observables, inferencias y ground truth de laboratorio.
+4. Regla, mecanismo de evaluación o hipótesis de imposibilidad.
+5. Resultado frente a todos los escenarios publicados y, especialmente, frente a sus pares cercanos.
+6. Falsos positivos, falsos negativos y situaciones fuera de cobertura.
+7. Prueba de resistencia a manipulación: qué decisiones puede inducir el atacante.
+8. Para Deployment, una acción concreta, un ancla independiente y un modo de falla explícito.
 
-Usá [proposal-template.md](proposal-template.md) como formato de base.
+Usá [proposal-template.md](proposal-template.md) y [scorecard.md](scorecard.md).
 
 ## Éxito medible
 
-Una propuesta pasa a estado **Candidate** cuando:
+### Resultado de Research
 
-- obtiene al menos 14 de 20 puntos en la rúbrica;
-- no activa una alerta externa urgente en los escenarios benignos sin justificarlo;
-- anticipa una alerta útil en al menos un escenario de riesgo;
-- no depende de contenido sensible ni de una capacidad inaccesible para Android normal;
-- permite a alguien hacer algo concreto con la alerta.
+Una propuesta es un resultado valioso si supera los gates de método, obtiene al menos 14/20 o demuestra de forma reproducible que dos desenlaces distintos son indistinguibles con las mismas observaciones disponibles.
 
-## Resultado esperado de este primer ciclo
+### Candidate de Deployment
 
-El resultado puede ser una regla viable, una mejora a los escenarios, evidencia de que una hipótesis es inviable o un conjunto de límites técnicos bien documentados. Un resultado negativo también es útil si evita construir una solución que no puede funcionar.
+Una propuesta llega a Candidate sólo si:
+
+- supera todos los gates aplicables;
+- obtiene al menos 14/20;
+- no exige contenido sensible ni capacidades incompatibles con su declaración de despliegue;
+- no depende de que el usuario manipulado confirme, descarte o configure una excepción para mantenerse segura;
+- explica qué persona, sistema o canal conserva independencia cuando el teléfono deja de ser confiable.
+
+## Resultado esperado del primer ciclo
+
+El proyecto puede producir una regla útil, un mejor escenario, una frontera técnica, una hipótesis descartada o evidencia de que sería necesaria otra autoridad —por ejemplo, un banco, una plataforma o un dispositivo administrado—. Todos son resultados válidos.

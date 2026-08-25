@@ -1,69 +1,99 @@
 # Plantilla de propuesta
 
-Copiá esta plantilla en un issue o pull request. Las secciones marcadas como obligatorias deben estar completas para que la propuesta pueda evaluarse.
+Copiá esta plantilla en un issue o pull request. Las secciones obligatorias deben estar completas para que una propuesta pueda evaluarse.
 
 ## Título
 
-`PSR-XXXX — nombre breve de la secuencia o regla`
+`PSR-XXXX — nombre breve de la hipótesis, regla o límite`
+
+## Pista — obligatorio
+
+- [ ] Research
+- [ ] Deployment
+
+Explicá por qué corresponde a esa pista y qué afirmación **no** hace tu propuesta.
 
 ## Resumen — obligatorio
 
-Explicá en dos o tres frases qué secuencia intentás identificar y qué alerta o intervención proponés.
+Explicá qué intentás medir, distinguir, limitar o intervenir. No afirmes certeza de fraude si sólo observás una secuencia.
 
-## Cadena de riesgo — obligatorio
-
-Describí los eventos en orden temporal, a nivel defensivo y sin instrucciones operativas de fraude.
-
-## Evidencia — obligatorio
+## Cadena de riesgo y evidencia — obligatorio
 
 - Fuentes oficiales:
 - Prensa o investigación especializada:
 - Reportes comunitarios o casos anonimizados:
-- Qué parte de la hipótesis está confirmada y cuál sigue siendo inferencia:
+- Qué está confirmado:
+- Qué sigue siendo inferencia:
+- Nivel de confianza:
 
-## Señales técnicamente observables — obligatorio
+## Separación de capas — obligatorio
 
-| Señal | Cómo se observaría | Permiso o limitación | Fuerza de la señal |
+| Capa | Señal, hipótesis o resultado | Cómo se obtiene | Puede usarla la regla |
 | --- | --- | --- | --- |
-| | | | |
+| Evento observable | | | Sí / No |
+| Inferencia | | | No como hecho |
+| Ground truth de laboratorio | | | No |
+| Daño real que no puede observarse | | | No |
 
-## Señales no observables o excluidas — obligatorio
+## Regla, experimento o hipótesis de imposibilidad — obligatorio
 
-Indicá explícitamente qué no podés, no debés o no necesitás conocer: contenido de llamadas, chats, códigos, credenciales, acciones dentro de una cuenta u otros datos sensibles.
+Definí la lógica, ventanas temporales y nivel de riesgo. Una propuesta de Research puede demostrar que una señal no alcanza; una de Deployment debe declarar sus límites de cobertura.
 
-## Regla propuesta — obligatorio
+## Resultado contra escenarios — obligatorio
 
-Definí la lógica, el orden de las señales, las ventanas de tiempo y el nivel de riesgo. Puede ser pseudocódigo, una tabla o una explicación precisa.
-
-## Resultado esperado contra escenarios — obligatorio
-
-| Escenario | Riesgo esperado | Momento máximo de alerta | Justificación |
+| Escenario | Salida de la propuesta | Afirmación permitida | Límite o incertidumbre |
 | --- | --- | --- | --- |
-| | | | |
+| S-01 | | | |
+| S-02 | | | |
+| S-03 | | | |
+| S-04 | | | |
+| S-05 | | | |
+| S-06 | | | |
 
-## Falsos positivos previsibles — obligatorio
+## Prueba de resistencia a manipulación — obligatorio
 
-- Caso benigno que podría activar la regla:
-- Impacto para la persona:
-- Cómo se reduce la confusión sin invadir privacidad:
+- ¿Qué permisos, excepciones, avisos o preferencias podría inducir el atacante?
+- ¿Qué parte de la propuesta seguiría funcionando si la persona confirma o descarta algo bajo presión?
+- ¿Qué parte puede neutralizarse?
+- ¿Cuál es el modo de falla seguro y cómo se comunica?
 
-## Acción de protección — obligatorio
+## Falsos positivos, falsos negativos y cobertura — obligatorio
 
-¿Qué debería hacer la persona, un contacto de confianza o una institución cuando se active la alerta? La acción debe ser concreta y no requerir que el teléfono comprometible siga siendo confiable.
+- Par benigno más parecido:
+- Falso positivo previsto:
+- Falso negativo previsto:
+- Modalidades explícitamente fuera de cobertura:
 
-## Privacidad y datos mínimos — obligatorio
+## Acción de protección — obligatorio sólo para Deployment
+
+- Acción para la persona:
+- Acción para una institución o canal externo:
+- Ancla independiente del teléfono:
+- Cómo se establece, cambia y revoca:
+- Qué ocurre si no responde o no es confiable:
+
+## Privacidad, seguridad y datos mínimos — obligatorio
 
 - Datos observados:
 - Datos que no se recolectan:
+- Datos sintéticos usados en Research, si aplica:
 - Retención propuesta:
 - Riesgo de abuso y mitigación:
 
 ## Autoevaluación
 
+| Gate | Pasa / No pasa / No aplica | Justificación |
+| --- | --- | --- |
+| Separación observación–inferencia–ground truth | | |
+| No usa contenido sensible ni datos reales | | |
+| Prueba contra un par benigno cercano | | |
+| Declara manipulación posible y modo de falla | | |
+| Ancla independiente para Deployment | | |
+
 | Criterio | Puntaje de 0 a 5 | Explicación breve |
 | --- | ---: | --- |
 | Detectabilidad | | |
 | Anticipación | | |
-| Falsos positivos | | |
-| Acción útil | | |
+| Discriminación | | |
+| Resiliencia frente a manipulación | | |
 | **Total** | **/20** | |
