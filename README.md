@@ -36,17 +36,19 @@ Una prueba en laboratorio nunca equivale, por sí sola, a una función segura o 
 | [threat-model.md](threat-model.md) | Explicita activos, capacidades del atacante y límites de confianza. |
 | [scenarios.md](scenarios.md) | Escenarios sintéticos con observaciones y ground truth separados. |
 | [proposal-template.md](proposal-template.md) | Formato obligatorio para una propuesta. |
+| [example-proposal.md](example-proposal.md) | Ejemplo de Research: una secuencia indistinguible no autoriza una certeza. |
 | [scorecard.md](scorecard.md) | Gates de seguridad y rúbrica de evaluación. |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Reglas de colaboración y seguridad pública. |
 
 ## Cómo contribuir
 
 1. Leé [challenge.md](challenge.md), [threat-model.md](threat-model.md) y [scenarios.md](scenarios.md).
-2. Elegí la pista **Research** o **Deployment**.
-3. Completá [proposal-template.md](proposal-template.md).
-4. Declarar con precisión qué observás, qué inferís y qué no podés saber.
-5. Probá la propuesta contra todos los escenarios, incluyendo los pares benignos cercanos.
-6. Respetá [CONTRIBUTING.md](CONTRIBUTING.md): sólo evidencia resumida y material sintético o rigurosamente anonimizado.
+2. Revisá [example-proposal.md](example-proposal.md) para conocer el nivel de evidencia e incertidumbre esperado.
+3. Elegí la pista **Research** o **Deployment**.
+4. Completá [proposal-template.md](proposal-template.md).
+5. Declarar con precisión qué observás, qué inferís y qué no podés saber.
+6. Probá la propuesta contra todos los escenarios, incluyendo los pares benignos cercanos.
+7. Respetá [CONTRIBUTING.md](CONTRIBUTING.md): sólo evidencia resumida y material sintético o rigurosamente anonimizado.
 
 ## Fuera de alcance por ahora
 
